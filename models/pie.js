@@ -1,5 +1,10 @@
-const mongoose = require("mongoose")
+////////////////////////////////////////////////
+// Our Schema and Models for our fruit resource
+/////////////////////////////////////////////
+// new import
+const mongoose = require("./connection")
 
+// pull schema and model from mongoose
 const { Schema, model } = mongoose
 
 // make pie schema
