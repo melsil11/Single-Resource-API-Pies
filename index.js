@@ -37,8 +37,8 @@ app.get('/', (req, res) => {
 // send the appropriate request to the appropriate route and send the correct response
 // app.use, when we register a route, needs to arguments
 // the first, is the base url endoint, the second is the file to use
-app.use('/pies', FruitRouter)
-app.use('/users', UserRouter)
+app.use('/pies', PieRouter)
+app.use('/user', UserRouter)
 
 //////////////////////////////////////////////
 // Server Listener

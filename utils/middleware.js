@@ -4,7 +4,7 @@
 require('dotenv').config() // Load ENV Variables
 const express = require('express') // import express
 const morgan = require('morgan') // import morgan - its a request logger
-const session =reqire('express-session')
+const session = require('express-session')
 const MongoStore = require('connect-mongo')
 
 /////////////////////////////////////////////////////
