@@ -35,7 +35,7 @@ app.use(express.json())
 
 // routes
 app.get("/", (req, res) => {
-    res.send("I love Pies!!!.")
+    res.send("I love Pie!!!.")
   })
   app.get("/pies/seed", (req, res) => {
     // array of starter fruits
@@ -97,7 +97,7 @@ app.get("/pies/:id", (req, res) => {
 app.put("/pies/:id", (req, res) => {
     const id = req.params.id
    
-    Fruit.findByIdAndUpdate(id, req.body, { new: true })
+    Pie.findByIdAndUpdate(id, req.body, { new: true })
       .then((pie) => {
         res.sendStatus(204)
       })
