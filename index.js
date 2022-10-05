@@ -7,6 +7,7 @@ const morgan = require("morgan")
 const path = require("path") 
 const PieRouter = require("./controllers/pieControllers")
 const UserRouter = require("./controllers/userControllers")
+const CommentRouter = require('./controllers/commentControllers')
 const middleware = require('./utils/middleware.js')
 /////////////////////////////////////////////
 // Create our Express Application code
@@ -38,6 +39,7 @@ app.get('/', (req, res) => {
 // app.use, when we register a route, needs to arguments
 // the first, is the base url endoint, the second is the file to use
 app.use('/pies', PieRouter)
+app.use('/comments', CommentRouter)
 app.use('/user', UserRouter)
 
 //////////////////////////////////////////////
