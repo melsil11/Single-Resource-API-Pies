@@ -1,0 +1,18 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+  <div class="container-sm">
+    <form action="/pies" method="POST">
+      <fieldset>
+        <legend>Create New Pie</legend>
+        <label class="form-label">Name:
+        </label>
+        <input type="text" name="name" placeholder="enter pie name" class="form-control">
+        <label class="form-label">Fruit:</label>
+        <input type="checkbox" name="fruit" placeholder="enter fruit " class="form-check-input">
+        <label class="form-label">Graham Cracker Crust:</label>
+        <input type="checkbox" name="grahamCrackerCrust" class="form-check-input">
+      </fieldset>
+      <input type="submit" value="Create New Pie" class="btn btn-success">
+    </form>
+  </div>
+{% endblock %}

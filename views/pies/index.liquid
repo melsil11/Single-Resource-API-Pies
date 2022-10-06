@@ -1,0 +1,39 @@
+<!-- we're serving block content in layout.liquid -->
+  <!-- so we need to inform all our blocks(files) -->
+{% layout 'layout.liquid'%}
+<!-- here we start our block content -->
+{% block content %}
+  <div>
+    <h2 class="display-6">All of the Pies</h2>
+    <div class="row">
+      <!-- this uses liquid tags to loop over the fruits! -->
+      {% for pie in pies %}
+        <div class="card" style="width: 18rem;">
+          <!-- card header -> name of fruit -->
+          <!-- card body -> ready to eat as title, color as text--><h5 class="card-header"> {{pie.name}}
+          </h5>
+          <div class="card-body">
+            <h5 class="card-title">
+                {% if pie.fruit %}
+                  Sweet and Ready to Eat
+                 {% else %}
+                  No Fruit
+                {%endif%}
+            </h5>
+            <p class="card-text">
+                {% if pie.grahamCrackerCrust %}
+                     Soft crumbly crust
+                {% else %}
+                    Flakey dough crust
+                 {%endif%}
+            </p>
+            <a href="/pies/{{ pie.id }}" class="btn btn-info">
+              View
+              {{ pie.name }}
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

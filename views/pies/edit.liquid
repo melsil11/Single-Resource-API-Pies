@@ -1,0 +1,25 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+  <div class="container-sm">
+    <!-- here, we're using method override in order to send a PUT request -->
+    <form action="/pies/{{ pie.id }}?_method=PUT" method="POST">
+      <fieldset>
+        <legend>Edit New Pie</legend>
+        <label class="form-label">Name:</label>
+        <input type="text" name="name" placeholder="enter pie name" class="form-control" value="{{ pie.name }}">
+        <label class="form-label">Fruit:</label>
+        <input type="checkbox" name="fruit" class="form-check-input" 
+        {% if pie.fruit %}
+          checked
+          {% endif %}>
+        <label class="form-label">Graham Cracker Crust:
+        </label>
+        <input type="checkbox" name="grahamCrackerCrust" class="form-check-input"
+          {% if pie.grahamCrackerCrust %}
+          checked
+          {% endif %}>
+      </fieldset>
+      <input type="submit" class="btn btn-success" value="Edit {{ pie.name }}">
+    </form>
+  </div>
+{% endblock %}

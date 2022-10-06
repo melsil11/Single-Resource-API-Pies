@@ -3,7 +3,7 @@
 /////////////////////////////////////////////
 require("dotenv").config() 
 const express = require("express") 
-const morgan = require("morgan") 
+// const morgan = require("morgan") 
 const path = require("path") 
 const PieRouter = require("./controllers/pieControllers")
 const UserRouter = require("./controllers/userControllers")
@@ -12,7 +12,7 @@ const middleware = require('./utils/middleware.js')
 /////////////////////////////////////////////
 // Create our Express Application code
 /////////////////////////////////////////////
-const app = express()
+const app = require('liquid-express-views')(express())
 
 /////////////////////////////////////////////////////
 // Middleware
@@ -28,7 +28,7 @@ middleware(app)
 // Home Routes
 ////////////////////////////////////////////
 app.get('/', (req, res) => {
-  res.send('Your server is running... better go out and catch it.')
+  res.render('index.liquid')
 })
 
 ///////////////////////////////////////////
@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
 // the first, is the base url endoint, the second is the file to use
 app.use('/pies', PieRouter)
 app.use('/comments', CommentRouter)
-app.use('/user', UserRouter)
+app.use('/users', UserRouter)
 
 //////////////////////////////////////////////
 // Server Listener

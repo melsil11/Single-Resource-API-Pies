@@ -2,8 +2,9 @@
 // Dependencies
 /////////////////////////////////////////////////////
 require('dotenv').config() // Load ENV Variables
-const express = require('express') // import express
 const morgan = require('morgan') // import morgan - its a request logger
+const express = require('express') // import express
+const methodOverride = require('method-override')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
 
@@ -11,6 +12,7 @@ const MongoStore = require('connect-mongo')
 // Middleware function
 /////////////////////////////////////////////////////
 const middleware = (app)=> {
+    app.use(methodOverride('_method'))
     app.use(morgan('tiny')) //logging - this is for request logging. 
     // The 'tiny' argument declares what size of morgan to use
     app.use(express.urlencoded({ extended: true })) // parse urlencoded request bodies

@@ -34,7 +34,8 @@ router.post("/:pieId", (req, res) => {
             return pie.save()
         })
         .then(pie => {
-            res.status(200).json({ pie: pie })
+            // res.status(200).json({ pie: pie })
+            res.render("/:id")
         })
         // do something else if it doesn't work
         //  --> send some kind of error depending on what went wrong
