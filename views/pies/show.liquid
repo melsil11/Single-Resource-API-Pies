@@ -4,9 +4,7 @@
     <!-- you can do fun things like inline style with properties of your rendered object -->
     <!-- <article style="background-color:{{fruit.color}}"> -->
       <article>
-        <h2>
-      {{ pie.name }}
-      </h2>
+        <h2>{{ pie.name }}</h2>
         <h4>
           {% if pie.fruit %}
           Sweet and Ready to Eat
@@ -38,16 +36,37 @@
         </div>
       {% endif %}
     </article>
+    <hr>
+    <h4>comments</h4>
+    <hr>
+    {% if loggedIn %}
     <div class="col-md-6">
       <form action="/comments/{{pie.id}}" method="POST">
         <fieldset>
           <legend>Add Comment</legend>
           <label class="form-label">Comment:
           </label>
-          <input type="text" class="form-control" name="note" placeholder="enter comment here...">
+          <input type="text" class="form-control mb-1" name="note" placeholder="enter comment here...">
         </fieldset>
         <input type="submit" class="btn btn-success" value="Add Comment">
       </form>
     </div>
+   {% else %}
+      <div class="col-md-6">
+        <small>If you'd like to leave a comment, please log in...</small>
+      </div>
+    {% endif %}
+    <hr>
+    {% if pie.comments.length > 0%}
+      <div class="container-sm justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          {% for comment in pie.comments %}
+            {% render '../comment.liquid', comment: comment, userId: userId, pie: pie %}
+          {% endfor %}
+        </div>
+      </div>
+    {% else %}
+      <small>no comments yet...</small>
+    {% endif %}  
   </div>
 {% endblock %}

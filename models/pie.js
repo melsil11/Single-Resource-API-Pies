@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////
-// Our Schema and Models for our fruit resource
+// Our Schema and Models for our pie resource
 /////////////////////////////////////////////
 // new import
 const mongoose = require("./connection")

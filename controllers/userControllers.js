@@ -41,14 +41,16 @@ router.post('/signup', async (req, res) => {
     User.create(req.body)
         // if created successfully redirect to login
         .then(user => {
+            console.log(user)
             // res.redirect('/user/login')
             // res.status(201).json({ username: user.username })
-            res.redirect('/user/login')
+            res.redirect('/users/login')
         })
         // if an error occurs, send err
         .catch(error => {
             console.log(error)
-            res.json(error)
+            // res.json(error)
+            res.redirect(`/error?error=username%20or%20password%20incorrect`)
         })
 })
 
@@ -87,18 +89,19 @@ router.post('/login', async (req, res) => {
                     res.redirect('/pies')
                 } else {
                     // send an error if the password doesnt match
-                    res.json({ error: 'username or password incorrect'})
+                    res.redirect(`/error?error=username%20or%20password%20incorrect`)
 
                 }
             } else {
                 // send an error if the user doesnt exist
-                res.json({ error: 'user does not exist' })
+                res.redirect(`/error?error=user%20does%20not%20exist`)
             }
         })
         // catch any other errors that occur
         .catch(error => {
-            console.log(error)
-            res.json(error)
+            // console.log(error)
+            // res.json(error)
+            res.redirect(`/error?error=${err}`)
         })
 })
 
@@ -124,7 +127,8 @@ router.delete('/logout', (req, res) => {
         console.log('req.session after logout', req.session)
         console.log('err on logout?', err)
 
-        res.sendStatus(204)
+        // res.sendStatus(204)
+        res.redirect('/')
     })
 })
     

@@ -4,7 +4,7 @@
     <!-- here, we're using method override in order to send a PUT request -->
     <form action="/pies/{{ pie.id }}?_method=PUT" method="POST">
       <fieldset>
-        <legend>Edit New Pie</legend>
+        <legend>Edit {{pie.name}}</legend>
         <label class="form-label">Name:</label>
         <input type="text" name="name" placeholder="enter pie name" class="form-control" value="{{ pie.name }}">
         <label class="form-label">Fruit:</label>

@@ -18,15 +18,21 @@
                 {% if loggedIn %}
                     <a class="nav-link text-light" href="/pies/mine">Hello {{username}}</a>
                 {% endif %}
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" 
+                aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <a class="nav-link text-light" href="/pies"> All the Pies</a>
+                    {% if loggedIn%}
                     <a class="nav-link text-light" href="/pies/new">New Pies</a>
+                    <a class="nav-link text-light" href="/users/logout">Log Out</a>
+                    {% else %}
                     <a class="nav-link text-light" href="/users/signup">Sign Up</a>
                     <a class="nav-link text-light" href="/users/login">Log In</a>
-                    <a class="nav-link text-light" href="/users/logout">Log Out</a>
+                    {% endif %}
                 </div>
             </div>
         </nav>

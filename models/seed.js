@@ -9,7 +9,7 @@ const Pie = require("./pie")
 /////////////////////////////////////
 // first we need our connections saved to a variable for easy reference
 const db = mongoose.connection
-// bring in the array of starter fruits
+// bring in the array of starter pies
 db.on("open", ()=> {
 const startPies = [
       { name: "Apple", fruit: true, grahamCrackerCrust: false },
@@ -25,7 +25,7 @@ const startPies = [
             console.log('this is what .deleteMany returns', deletedPies)
             Pie.create(startPies)
                 .then((data) => {
-                    console.log('Here are the new seed fruits', data)
+                    console.log('Here are the new seed pies', data)
                     db.close()
         })
 
