@@ -93,6 +93,7 @@ router.get("/:id", (req, res) => {
 router.get('/mine', (req, res) => {
   // find the piess, by ownership
   Pie.find({ owner: req.session.userId })
+  console.log("I  am her" )
   // then display the piess
   .then(pies => {
     const username = req.session.username
@@ -101,9 +102,11 @@ router.get('/mine', (req, res) => {
 
     // res.status(200).json({ pies: pies })
     res.render('pies/index', { pies, username, loggedIn, userId })
+    console.log("I got here" )
 })
   // or throw an error if there is one
       // .catch(error => res.json(error))
+      console.log("I  am her" )
       .catch(err => res.redirect(`/error?error=${err}`))
 })
 
@@ -121,7 +124,7 @@ router.get("/:id/edit", (req, res) => {
 			// console.log('edit pie', pie)
 			// const username = req.session.username
 			// const loggedIn = req.session.loggedIn
-			res.render('pies/edit', { pie, username, loggedIn })
+			res.render('pies/edit', { pie, username, loggedIn, userId })
 		})
 		// -->error if no pie
 		.catch((err) => {
