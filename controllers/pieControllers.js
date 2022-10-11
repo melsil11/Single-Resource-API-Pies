@@ -64,6 +64,31 @@ router.post("/", (req, res) => {
       // })
   })
 
+// GET request
+// only pies owned by logged in user
+// we're going to build another route, that is owner specific,
+//  to list all the pies owned by a certain(logged in) user
+router.get('/mine', (req, res) => {
+  // find the pies, by ownership
+  console.log(req.session.userId)
+  Pie.find({ owner: req.session.userId })
+  // console.log("I am here")
+
+    .then(pies => {
+      const username = req.session.username
+      const loggedIn = req.session.loggedIn
+      const userId = req.session.userId
+
+      // res.status(200).json({ pies: pies })
+      res.render('pies/index', { pies, username, loggedIn, userId })
+      console.log("I got here" )
+})
+  // or throw an error if there is one
+      // .catch(error => res.json(error))
+      // console.log("I am here too" )
+      .catch(err => res.redirect(`/error?error=${err}`))
+})
+
 // show request
 router.get("/:id", (req, res) => {
     const id = req.params.id
@@ -86,29 +111,7 @@ router.get("/:id", (req, res) => {
       .catch(err => res.redirect(`/error?error=${err}`))
 })
 
-// GET request
-// only pies owned by logged in user
-// we're going to build another route, that is owner specific,
-//  to list all the pies owned by a certain(logged in) user
-router.get('/mine', (req, res) => {
-  // find the piess, by ownership
-  Pie.find({ owner: req.session.userId })
-  console.log("I  am her" )
-  // then display the piess
-  .then(pies => {
-    const username = req.session.username
-    const loggedIn = req.session.loggedIn
-    const userId = req.session.userId
 
-    // res.status(200).json({ pies: pies })
-    res.render('pies/index', { pies, username, loggedIn, userId })
-    console.log("I got here" )
-})
-  // or throw an error if there is one
-      // .catch(error => res.json(error))
-      console.log("I  am her" )
-      .catch(err => res.redirect(`/error?error=${err}`))
-})
 
 // GET request to show the update page
 router.get("/:id/edit", (req, res) => {
@@ -139,6 +142,7 @@ router.get("/:id/edit", (req, res) => {
 router.put("/:id", (req, res) => {
     console.log("req.body initially", req.body)
     const id = req.params.id
+    
     req.body.fruit = req.body.fruit ==='on'? true : false
     req.body.grahamCrackerCrust = req.body.grahamCrackerCrust ==='on'? true : false
     console.log('req.body after changing checkbox value', req.body)
