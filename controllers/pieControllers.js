@@ -89,27 +89,7 @@ router.get('/mine', (req, res) => {
       .catch(err => res.redirect(`/error?error=${err}`))
 })
 
-// show request
-router.get("/:id", (req, res) => {
-    const id = req.params.id
-    Pie.findById(id)
-        // populate will provide more data about the document that is in the specified collection
-      // the first arg is the field to populate
-      // the second can specify which parts to keep or which to remove
-      // .populate("owner", "username")
-      // we can also populate fields of our subdocuments
-      .populate("comments.author", "username")
-      .then(pie => {
-        const username = req.session.username
-        const loggedIn = req.session.loggedIn
-        const userId = req.session.userId
-       
-        res.render('pies/show', { pie, username, loggedIn, userId })
-          // res.json({ pie: pie })
-      })
-      // .catch(err => console.log(err))
-      .catch(err => res.redirect(`/error?error=${err}`))
-})
+
 
 
 
@@ -140,12 +120,11 @@ router.get("/:id/edit", (req, res) => {
 
 // put / update request
 router.put("/:id", (req, res) => {
-    console.log("req.body initially", req.body)
+    // console.log("req.body initially", req.body)
     const id = req.params.id
-    
     req.body.fruit = req.body.fruit ==='on'? true : false
     req.body.grahamCrackerCrust = req.body.grahamCrackerCrust ==='on'? true : false
-    console.log('req.body after changing checkbox value', req.body)
+    // console.log('req.body after changing checkbox value', req.body)
     Pie.findById(id)
       .then((pie) => {
         if (pie.owner == req.session.userId) {
@@ -163,32 +142,53 @@ router.put("/:id", (req, res) => {
     .catch(err => res.redirect(`/error?error=${err}`))
 })
 
+// show request
+router.get("/:id", (req, res) => {
+  const id = req.params.id
+  Pie.findById(id)
+      // populate will provide more data about the document that is in the specified collection
+    // the first arg is the field to populate
+    // the second can specify which parts to keep or which to remove
+    // .populate("owner", "username")
+    // we can also populate fields of our subdocuments
+    .populate("comments.author", "username")
+    .then(pie => {
+      const username = req.session.username
+      const loggedIn = req.session.loggedIn
+      const userId = req.session.userId
+     
+      res.render('pies/show', { pie, username, loggedIn, userId })
+        // res.json({ pie: pie })
+    })
+    // .catch(err => console.log(err))
+    .catch(err => res.redirect(`/error?error=${err}`))
+})
 
 // Delete request  
 router.delete("/:id", (req, res) => {
     const pieid = req.params.id
-    Pie.findByIdAndRemove(pieId)
+    Pie.findByIdAndRemove(pieid)
       .then((pie) => {
         // if the delete is successful, send the user back to the index page
-        res.redirect('/pies')
-      })
-      .catch(error => {
-          // res.json({ error })
-          res.redirect(`/error?error=${err}`)
-      })
-})
-        // if (pie.owner == req.session.userId) {
+        // res.redirect('/pies')
+      // })
+      // .catch(error => {
+      //     // res.json({ error })
+      //     res.redirect(`/error?error=${err}`)
+      // })
+// })
+        if (pie.owner == req.session.userId) {
           // if successful, send a status and delete the pie
-          // res.sendStatus(204)
-          // return pie.deleteOne()
-      // } else {
+          res.sendStatus(204)
+          return pie.deleteOne()
+      } else {
           // if they are not the user, send the unauthorized status
-          // res.sendStatus(401)
-//       }
-// })
+          res.sendStatus(401)
+      }
+  })
 // send the error if not
-// .catch(err => res.json(err))
-// })
+.catch(err => res.json(err))
+})
 
 
 //////////////////////////////////////////

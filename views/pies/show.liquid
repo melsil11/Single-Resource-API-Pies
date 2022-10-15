@@ -19,6 +19,7 @@
         {%endif%}
       <h4>
       </h4>
+      {%if loggedIn %}
       {% if pie.owner == userId  %}
         <div class="btn-group">
           {%- comment -%}
@@ -34,6 +35,7 @@
             <input type="submit" value="Delete" class="btn btn-danger">
           </form>
         </div>
+      {% endif %}
       {% endif %}
     </article>
     <hr>
