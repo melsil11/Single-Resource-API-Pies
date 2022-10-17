@@ -10,8 +10,8 @@ processes = []
 
 [env]
   PORT = "8080"
-  SECRET = iLovetheWaythegrasssmellswhenitiscut
-  DEPLOYED_URL = mongodb+srv://melsil:Bella5308@pieapplication.tqwnej1.mongodb.net/SingleResourceAPIPies?retryWrites=true&w=majority
+  SECRET = "iLovetheWaythegrasssmellswhenitiscut"
+  DEPLOYED_URL = "mongodb+srv://melsil:Bella5308@pieapplication.tqwnej1.mongodb.net/SingleResourceAPIPies?retryWrites=true&w=majority"
 
 [experimental]
   allowed_public_ports = []
