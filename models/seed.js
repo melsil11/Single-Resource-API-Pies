@@ -27,19 +27,19 @@ const startPies = [
                 .then((data) => {
                     console.log('Here are the new seed pies', data)
                     db.close()
-        })
+                })
 
-        .catch(error => {
-            console.log(error)
-            // always close the connection to the db
-            db.close()
+                .catch(error => {
+                    console.log(error)
+                // always close the connection to the db
+                    db.close()
+                })
         })
-    })
         .catch(error => {
             console.log(error)
             // always close the connection to the db
             db.close()
-    })
+         })
 
 })
 

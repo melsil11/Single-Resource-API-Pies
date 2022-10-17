@@ -1,18 +1,17 @@
 {% layout 'layout.liquid' %}
 {% block content %}
   <div class="container-md">
-    <!-- you can do fun things like inline style with properties of your rendered object -->
-    
-      <article>
-        <h2>{{ pie.name }}</h2>
-        <h4>
-          {% if pie.fruit %}
+    <!-- you can do fun things like inline style with properties of your rendered object -->    
+    <article>
+      <h2>{{ pie.name }}</h2>
+      <h4>
+        {% if pie.fruit %}
           Sweet and Ready to Eat
         {% else %}
           No Fruit
         {%endif%}
       </h4>
-      {% if pie.grahamCrackerCrust %}
+        {% if pie.grahamCrackerCrust %}
           Soft crumbly crust
         {% else %}
           Flakey dough crust
@@ -48,12 +47,12 @@
           <legend>Add Comment</legend>
           <label class="form-label">Comment:
           </label>
-          <input type="text" class="form-control mb-1" name="note" placeholder="enter comment here...">
+            <input type="text" class="form-control mb-1" name="note" placeholder="enter comment here...">
         </fieldset>
         <input type="submit" class="btn btn-success" value="Add Comment">
       </form>
     </div>
-   {% else %}
+    {% else %}
       <div class="col-md-6">
         <small>If you'd like to leave a comment, please log in...</small>
       </div>
@@ -68,7 +67,7 @@
         </div>
       </div>
     {% else %}
-      <small>no comments yet...</small>
+    <small>no comments yet...</small>
     {% endif %}  
   </div>
 {% endblock %}

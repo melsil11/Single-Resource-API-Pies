@@ -21,8 +21,8 @@ const piesSchema = new Schema({
     type: Schema.Types.ObjectId,
     // this line, tells us to refer to the User model
     ref: 'User'
-},
-comments: [commentSchema]
+  },
+  comments: [commentSchema]
 }, { timestamps: true })
 
 

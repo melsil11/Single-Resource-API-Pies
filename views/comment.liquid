@@ -8,9 +8,9 @@
           {{ comment.author.username }}
         </small>
         {% if comment.author == userId %}
-          <form action="/comments/delete/{{pie.id}}/{{comment.id}}?_method=DELETE" method="POST">
-            <input class="btn btn-danger" type="submit" value="X">
-          </form>
+        <form action="/comments/delete/{{pie.id}}/{{comment.id}}?_method=DELETE" method="POST">
+        <input class="btn btn-danger" type="submit" value="X">
+        </form>
         {% endif %}
       </div>
     </div>

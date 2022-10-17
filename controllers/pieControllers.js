@@ -16,18 +16,18 @@ const router = express.Router()
 
 // index route
 // get request
-  router.get("/", (req, res)=> {
-    Pie.find({})
+router.get("/", (req, res)=> {
+  Pie.find({})
     .populate("comments.author", "username")
-        .then(pies => {
-          const username = req.session.username
-          const loggedIn = req.session.loggedIn
-          const userId = req.session.userId
-          res.render('pies/index', { pies, username, loggedIn, userId })
+      .then(pies => {
+        const username = req.session.username
+        const loggedIn = req.session.loggedIn
+        const userId = req.session.userId
+        res.render('pies/index', { pies, username, loggedIn, userId })
           // res.json({ pies: pies })
-        })
+      })
         // .catch(err => console.log(err))
-        .catch(err => res.redirect(`/error?error=${err}`))
+      .catch(err => res.redirect(`/error?error=${err}`))
 })
 
 // new route -> GET route that renders our page with the form
@@ -82,11 +82,11 @@ router.get('/mine', (req, res) => {
       // res.status(200).json({ pies: pies })
       res.render('pies/index', { pies, username, loggedIn, userId })
       console.log("I got here" )
-})
+    })
   // or throw an error if there is one
       // .catch(error => res.json(error))
       // console.log("I am here too" )
-      .catch(err => res.redirect(`/error?error=${err}`))
+    .catch(err => res.redirect(`/error?error=${err}`))
 })
 
 
@@ -130,16 +130,16 @@ router.put("/:id", (req, res) => {
         if (pie.owner == req.session.userId) {
           // res.sendStatus(204)
           return pie.updateOne(req.body)
-      } else {
+        } else {
           res.sendStatus(401)
-      }
-  })
-     .then(() => {
+        }
+      })
+      .then(() => {
     // console.log('returned from update promise', data)
-      res.redirect(`/pies/${id}`)
-})
+        res.redirect(`/pies/${id}`)
+      })
   // .catch(error => res.json(error))
-    .catch(err => res.redirect(`/error?error=${err}`))
+      .catch(err => res.redirect(`/error?error=${err}`))
 })
 
 // show request
@@ -181,13 +181,13 @@ router.delete("/:id", (req, res) => {
           // if successful, send a status and delete the pie
           res.sendStatus(204)
           return pie.deleteOne()
-      } else {
+        } else {
           // if they are not the user, send the unauthorized status
           res.sendStatus(401)
-      }
-  })
+        }
+      })
 // send the error if not
-.catch(err => res.json(err))
+      .catch(err => res.json(err))
 })
 
 
